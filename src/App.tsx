@@ -11,7 +11,8 @@ import {
   FileCode, 
   User, 
   Send, 
-  Bird, 
+  Scroll,
+  Feather,
   X,
   Mail,
   Cloud,
@@ -115,6 +116,29 @@ const translations = {
     athenaVoice: "Voz de Thot",
     enableVoice: "Activar Thot"
   }
+};
+
+// Sandstorm Animation Component
+const Sandstorm = () => {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+      {[...Array(750)].map((_, i) => (
+        <div 
+          key={i}
+          className="sand-particle"
+          style={{
+            top: `${Math.random() * 150 - 50}%`,
+            left: `${Math.random() * 150 - 50}%`,
+            width: `${Math.random() * 40 + 10}px`,
+            height: `${Math.random() * 2 + 1}px`,
+            '--duration': `${Math.random() * 1 + 0.5}s`,
+            '--delay': `${Math.random() * 5}s`,
+            opacity: Math.random() * 0.5 + 0.2,
+          } as any}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default function App() {
@@ -507,6 +531,7 @@ export default function App() {
 
   return (
     <div className="h-screen w-screen flex flex-col bg-desert-dark relative overflow-hidden">
+      <Sandstorm />
       {/* Background Decorative Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-desert-sand/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-desert-clay/10 blur-[120px] rounded-full pointer-events-none" />
@@ -604,7 +629,7 @@ export default function App() {
             {messages.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center space-y-4 opacity-50">
                 <div className="w-16 h-16 rounded-full bg-desert-sand/30 flex items-center justify-center">
-                  <Bird size={32} className="text-desert-sand" />
+                  <Feather size={32} className="text-desert-sand" />
                 </div>
                 <p className="text-lg font-bold text-desert-papyrus">{t.welcomeTitle}</p>
                 <p className="text-sm max-w-xs text-desert-sand/60">{t.welcomeSubtitle}</p>
@@ -640,7 +665,7 @@ export default function App() {
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-desert-sand/10 border border-white/10 rounded-2xl px-4 py-3">
-                  <Bird className="animate-bounce text-desert-sand" size={18} />
+                  <Feather className="animate-bounce text-desert-sand" size={18} />
                 </div>
               </div>
             )}
@@ -659,24 +684,24 @@ export default function App() {
                   className="flex flex-col items-center justify-center py-2 space-y-2"
                 >
                   <div className="relative">
-                    <div className={`w-16 h-16 rounded-full flex items-center justify-center bg-royal-soft/20 border-2 transition-all duration-500 ${
-                      isSpeaking ? 'border-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.5)]' : 
-                      isListening ? 'border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)]' : 
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center bg-desert-sand/10 border-2 transition-all duration-500 ${
+                      isSpeaking ? 'border-desert-gold shadow-[0_0_20px_rgba(154,123,79,0.5)]' : 
+                      isListening ? 'border-desert-sand shadow-[0_0_15px_rgba(194,178,128,0.3)]' : 
                       'border-white/10'
                     }`}>
-                      <Bird 
+                      <Feather 
                         size={32} 
-                        className={`${isSpeaking ? 'text-purple-400 animate-pulse' : isListening ? 'text-blue-400' : 'text-slate-500'}`} 
+                        className={`${isSpeaking ? 'text-desert-gold animate-pulse' : isListening ? 'text-desert-sand' : 'text-desert-clay'}`} 
                       />
                     </div>
                     {isSpeaking && (
-                      <div className="absolute -top-1 -right-1 bg-purple-600 p-1 rounded-full shadow-lg">
-                        <Volume2 size={12} />
+                      <div className="absolute -top-1 -right-1 bg-desert-gold p-1 rounded-full shadow-lg">
+                        <Volume2 size={12} className="text-desert-dark" />
                       </div>
                     )}
                   </div>
                   <div className="flex flex-col items-center gap-1">
-                    <p className="text-[11px] font-medium text-slate-400">
+                    <p className="text-[11px] font-medium text-desert-sand/60">
                       {isSpeaking ? t.athenaVoice : isListening ? t.listening : t.wakeWordHint}
                     </p>
                     {voiceTranscript && (
