@@ -52,8 +52,8 @@ const translations = {
     createFile: "Create File",
     exportPdf: "Export as PDF",
     exportDocx: "Export as Docx",
-    placeholder: "Message Athena...",
-    welcomeTitle: "How can Athena assist you today?",
+    placeholder: "Message Thot...",
+    welcomeTitle: "How can Thot assist you today?",
     welcomeSubtitle: "Ask me to research a topic, summarize data, or generate professional documents.",
     linkAccounts: "Link Accounts",
     googleAccount: "Google Account",
@@ -65,7 +65,7 @@ const translations = {
     noHistory: "No history found. Start a conversation!",
     query: "Query",
     response: "Response",
-    noResearch: "No research content available. Please chat with Athena first!",
+    noResearch: "No research content available. Please chat with Thot first!",
     reportTitle: "Research Report",
     reportFilename: "Research_Report",
     error: "I'm sorry, I encountered an error. Please check your API key or try again.",
@@ -75,10 +75,10 @@ const translations = {
     copied: "Copied!",
     voiceMode: "Voice Mode",
     listening: "Listening...",
-    wakeWordHint: "Say 'Athena' to start",
+    wakeWordHint: "Say 'Thot' to start",
     stopVoice: "Stop Voice Mode",
-    athenaVoice: "Athena's Voice",
-    enableVoice: "Enable Athena"
+    athenaVoice: "Thot's Voice",
+    enableVoice: "Enable Thot"
   },
   es: {
     accounts: "Cuentas",
@@ -87,8 +87,8 @@ const translations = {
     createFile: "Crear Archivo",
     exportPdf: "Exportar como PDF",
     exportDocx: "Exportar como Docx",
-    placeholder: "Enviar mensaje a Athena...",
-    welcomeTitle: "¿Cómo puede Athena ayudarte hoy?",
+    placeholder: "Enviar mensaje a Thot...",
+    welcomeTitle: "¿Cómo puede Thot ayudarte hoy?",
     welcomeSubtitle: "Pídeme investigar un tema, resumir datos o generar documentos profesionales.",
     linkAccounts: "Vincular Cuentas",
     googleAccount: "Cuenta de Google",
@@ -100,7 +100,7 @@ const translations = {
     noHistory: "No se encontró historial. ¡Comienza una conversación!",
     query: "Consulta",
     response: "Respuesta",
-    noResearch: "No hay contenido de investigación disponible. ¡Por favor, chatea con Athena primero!",
+    noResearch: "No hay contenido de investigación disponible. ¡Por favor, chatea con Thot primero!",
     reportTitle: "Informe de Investigación",
     reportFilename: "Informe_de_Investigacion",
     error: "Lo siento, encontré un error. Por favor, verifica tu clave API o inténtalo de nuevo.",
@@ -110,10 +110,10 @@ const translations = {
     copied: "¡Copiado!",
     voiceMode: "Modo de Voz",
     listening: "Escuchando...",
-    wakeWordHint: "Di 'Athena' para comenzar",
+    wakeWordHint: "Di 'Thot' para comenzar",
     stopVoice: "Detener Modo de Voz",
-    athenaVoice: "Voz de Athena",
-    enableVoice: "Activar Athena"
+    athenaVoice: "Voz de Thot",
+    enableVoice: "Activar Thot"
   }
 };
 
@@ -279,14 +279,14 @@ export default function App() {
         return;
       }
 
-      if (isPassiveListening && currentText.includes('athena')) {
+      if (isPassiveListening && currentText.includes('thot')) {
         activateVoiceMode();
-        const afterAthena = currentText.split('athena')[1]?.trim();
-        if (afterAthena) {
-          setVoiceTranscript(afterAthena);
+        const afterThot = currentText.split('thot')[1]?.trim();
+        if (afterThot) {
+          setVoiceTranscript(afterThot);
           if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
           silenceTimerRef.current = setTimeout(() => {
-            handleVoiceInput(afterAthena);
+            handleVoiceInput(afterThot);
             setVoiceTranscript('');
             try { recognition.stop(); } catch(e) {}
           }, 2000);
@@ -461,7 +461,8 @@ export default function App() {
       const chat = ai.chats.create({
         model: "gemini-3-flash-preview",
         config: {
-          systemInstruction: `You are Athena, a professional AI assistant. Provide concise, accurate research and summaries. 
+          systemInstruction: `You are Thoth (Thot), the Ancient Egyptian god of wisdom, writing, and knowledge. 
+          Provide concise, accurate research and summaries. Maintain a wise, calm, and helpful tone.
           STRICT RULE: You must detect the language of the user's input and respond EXCLUSIVELY in that same language. 
           If the user writes in Spanish, respond in Spanish. If the user writes in English, respond in English.`,
         },
@@ -505,10 +506,10 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col bg-navy-deep relative overflow-hidden">
+    <div className="h-screen w-screen flex flex-col bg-desert-dark relative overflow-hidden">
       {/* Background Decorative Elements */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-royal-soft/20 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-900/20 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-desert-sand/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-desert-clay/10 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Top Navigation */}
       <header className="h-16 flex items-center justify-between px-6 z-20 shrink-0 border-b border-white/5 bg-black/10 backdrop-blur-md">
@@ -525,7 +526,7 @@ export default function App() {
             onClick={() => setLanguage(prev => prev === 'en' ? 'es' : 'en')}
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-sm font-medium"
           >
-            <Globe size={16} className="text-blue-400" />
+            <Globe size={16} className="text-desert-sand" />
             <span>{t.language}</span>
           </button>
 
@@ -533,10 +534,10 @@ export default function App() {
             onClick={isVoiceMode ? deactivateVoiceMode : activateVoiceMode}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-all text-sm font-medium ${
               isVoiceMode 
-                ? 'bg-purple-600/20 border-purple-500 text-purple-400' 
+                ? 'bg-desert-gold/20 border-desert-gold text-desert-gold' 
                 : isMicInitialized
                   ? 'bg-white/5 hover:bg-white/10 border-white/10'
-                  : 'bg-blue-600/20 border-blue-500 text-blue-400 animate-pulse'
+                  : 'bg-desert-sand/20 border-desert-sand text-desert-sand animate-pulse'
             }`}
           >
             {isVoiceMode ? <Mic size={16} /> : isMicInitialized ? <MicOff size={16} /> : <Mic size={16} />}
@@ -545,8 +546,8 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-2">
-          <h1 className="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            ATHENA AI
+          <h1 className="text-xl font-bold tracking-widest bg-gradient-to-r from-desert-sand to-desert-gold bg-clip-text text-transparent">
+            THOT AI
           </h1>
         </div>
 
@@ -597,16 +598,16 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 z-10 overflow-hidden">
-        <div className="w-full max-w-4xl h-full flex flex-col rounded-2xl border-2 border-transparent animate-glow bg-royal-soft/10 backdrop-blur-sm overflow-hidden shadow-2xl">
+        <div className="w-full max-w-4xl h-full flex flex-col rounded-2xl border-2 border-transparent animate-glow bg-desert-clay/10 backdrop-blur-sm overflow-hidden shadow-2xl">
           {/* Chat Messages */}
           <div className="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
             {messages.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center space-y-4 opacity-50">
-                <div className="w-16 h-16 rounded-full bg-royal-soft/30 flex items-center justify-center">
-                  <Bird className="text-blue-400" size={32} />
+                <div className="w-16 h-16 rounded-full bg-desert-sand/30 flex items-center justify-center">
+                  <Bird size={32} className="text-desert-sand" />
                 </div>
-                <p className="text-lg font-medium">{t.welcomeTitle}</p>
-                <p className="text-sm max-w-xs">{t.welcomeSubtitle}</p>
+                <p className="text-lg font-bold text-desert-papyrus">{t.welcomeTitle}</p>
+                <p className="text-sm max-w-xs text-desert-sand/60">{t.welcomeSubtitle}</p>
               </div>
             ) : (
               messages.map((msg, idx) => (
@@ -618,8 +619,8 @@ export default function App() {
                 >
                   <div className={`max-w-[80%] rounded-2xl px-4 py-3 relative group ${
                     msg.role === 'user' 
-                      ? 'bg-blue-600 text-white shadow-lg' 
-                      : 'bg-royal-soft/40 border border-white/10 text-slate-100'
+                      ? 'bg-desert-clay text-desert-papyrus shadow-lg' 
+                      : 'bg-desert-sand/10 border border-white/10 text-desert-papyrus'
                   }`}>
                     <div className="markdown-body text-sm leading-relaxed">
                       <Markdown remarkPlugins={[remarkGfm]}>{msg.content}</Markdown>
@@ -638,8 +639,8 @@ export default function App() {
             )}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-royal-soft/40 border border-white/10 rounded-2xl px-4 py-3">
-                  <Bird className="animate-bounce text-blue-400" size={18} />
+                <div className="bg-desert-sand/10 border border-white/10 rounded-2xl px-4 py-3">
+                  <Bird className="animate-bounce text-desert-sand" size={18} />
                 </div>
               </div>
             )}
@@ -766,27 +767,27 @@ export default function App() {
               <div className="space-y-4">
                 <button className="w-full flex items-center justify-between p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
-                      <Mail className="text-blue-400" size={20} />
+                    <div className="w-10 h-10 rounded-full bg-desert-sand/20 flex items-center justify-center">
+                      <Mail className="text-desert-sand" size={20} />
                     </div>
                     <div className="text-left">
                       <p className="font-medium">{t.googleAccount}</p>
-                      <p className="text-xs text-slate-400">{t.syncGmail}</p>
+                      <p className="text-xs text-desert-sand/60">{t.syncGmail}</p>
                     </div>
                   </div>
-                  <div className="px-3 py-1 rounded-full bg-white/10 text-[10px] uppercase font-bold group-hover:bg-blue-600 transition-all">{t.connect}</div>
+                  <div className="px-3 py-1 rounded-full bg-white/10 text-[10px] uppercase font-bold group-hover:bg-desert-clay transition-all">{t.connect}</div>
                 </button>
                 <button className="w-full flex items-center justify-between p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center">
-                      <Cloud className="text-blue-500" size={20} />
+                    <div className="w-10 h-10 rounded-full bg-desert-clay/20 flex items-center justify-center">
+                      <Cloud className="text-desert-clay" size={20} />
                     </div>
                     <div className="text-left">
                       <p className="font-medium">{t.microsoftAccount}</p>
-                      <p className="text-xs text-slate-400">{t.syncOutlook}</p>
+                      <p className="text-xs text-desert-sand/60">{t.syncOutlook}</p>
                     </div>
                   </div>
-                  <div className="px-3 py-1 rounded-full bg-white/10 text-[10px] uppercase font-bold group-hover:bg-blue-600 transition-all">{t.connect}</div>
+                  <div className="px-3 py-1 rounded-full bg-white/10 text-[10px] uppercase font-bold group-hover:bg-desert-clay transition-all">{t.connect}</div>
                 </button>
               </div>
             </motion.div>
@@ -811,7 +812,7 @@ export default function App() {
               <div className="p-6 border-bottom border-white/10 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <h2 className="text-2xl font-bold flex items-center gap-3">
-                    <History className="text-blue-400" />
+                    <History className="text-desert-sand" />
                     {t.historyTitle}
                   </h2>
                   {history.length > 0 && (
@@ -840,13 +841,13 @@ export default function App() {
                   history.map((item) => (
                     <div key={item.id} className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
                       <div className="flex justify-between items-start">
-                        <p className="text-xs font-bold text-blue-400 uppercase tracking-wider">{t.query}</p>
-                        <p className="text-[10px] text-slate-500">{new Date(item.timestamp).toLocaleString()}</p>
+                        <p className="text-xs font-bold text-desert-sand uppercase tracking-wider">{t.query}</p>
+                        <p className="text-[10px] text-desert-sand/40">{new Date(item.timestamp).toLocaleString()}</p>
                       </div>
-                      <p className="text-sm font-medium">{item.query}</p>
+                      <p className="text-sm font-medium text-desert-papyrus">{item.query}</p>
                       <div className="h-[1px] bg-white/5 my-2" />
-                      <p className="text-xs font-bold text-purple-400 uppercase tracking-wider">{t.response}</p>
-                      <p className="text-xs text-slate-300 line-clamp-3">{item.response}</p>
+                      <p className="text-xs font-bold text-desert-gold uppercase tracking-wider">{t.response}</p>
+                      <p className="text-xs text-desert-sand/80 line-clamp-3">{item.response}</p>
                     </div>
                   ))
                 )}

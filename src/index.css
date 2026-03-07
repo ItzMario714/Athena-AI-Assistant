@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-deep: #0a192f;
-  --color-royal-soft: #1e3a8a;
-  --color-glow-purple: #a855f7;
+  --color-desert-dark: #1a1612;
+  --color-desert-sand: #c2b280;
+  --color-desert-gold: #9a7b4f;
+  --color-desert-clay: #5d4037;
+  --color-desert-papyrus: #e0d5b1;
   
   @keyframes pulse-glow {
-    0%, 100% { border-color: rgba(168, 85, 247, 0.3); box-shadow: 0 0 5px rgba(168, 85, 247, 0.2); }
-    50% { border-color: rgba(168, 85, 247, 0.8); box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
+    0%, 100% { border-color: rgba(154, 123, 79, 0.3); box-shadow: 0 0 5px rgba(154, 123, 79, 0.2); }
+    50% { border-color: rgba(154, 123, 79, 0.8); box-shadow: 0 0 15px rgba(154, 123, 79, 0.4); }
   }
 }
 
@@ -16,7 +18,7 @@
 }
 
 body {
-  @apply bg-navy-deep text-slate-200 overflow-hidden;
+  @apply bg-desert-dark text-desert-papyrus/90 overflow-hidden;
   font-family: 'Inter', system-ui, sans-serif;
 }
 

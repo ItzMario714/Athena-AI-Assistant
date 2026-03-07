@@ -15,9 +15,6 @@ export default defineConfig(({mode}) => {
         '@': path.resolve(__dirname, '.'),
       },
     },
-    server.allowedHosts: {
-      "af987f1f-6671-43a8-8a57-86be241908fa-00-19bnggkftgm5x.spock.replit.dev",
-    }
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modifyâfile watching is disabled to prevent flickering during agent edits.

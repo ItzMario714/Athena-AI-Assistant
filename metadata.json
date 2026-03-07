@@ -1,5 +1,5 @@
 {
-  "name": "Remix: Athena AI Assistant",
-  "description": "A professional desktop-style AI assistant with file generation and history tracking.",
+  "name": "Thot AI Assistant",
+  "description": "A professional AI assistant inspired by Thoth, the Egyptian god of wisdom, with voice interaction and file generation.",
   "requestFramePermissions": ["microphone"]
 }
