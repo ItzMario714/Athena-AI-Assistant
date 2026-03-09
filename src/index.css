@@ -11,23 +11,10 @@
     0%, 100% { border-color: rgba(154, 123, 79, 0.3); box-shadow: 0 0 5px rgba(154, 123, 79, 0.2); }
     50% { border-color: rgba(154, 123, 79, 0.8); box-shadow: 0 0 15px rgba(154, 123, 79, 0.4); }
   }
-
-  @keyframes sand-drift {
-    0% { transform: translate(-20vw, -20vh) skewX(-20deg); opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.6; }
-    100% { transform: translate(120vw, 120vh) skewX(-20deg); opacity: 0; }
-  }
 }
 
 @utility animate-glow {
   animation: pulse-glow 3s infinite ease-in-out;
-}
-
-@utility sand-particle {
-  @apply absolute bg-desert-sand/40 pointer-events-none blur-[1px];
-  animation: sand-drift var(--duration, 1s) linear infinite;
-  animation-delay: var(--delay, 0s);
 }
 
 body {
